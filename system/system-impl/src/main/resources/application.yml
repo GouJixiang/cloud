@@ -2,7 +2,7 @@ server:
   port: 8080
 
 spring:
-  profiles:
-    active: @profiles.active@
   application:
     name: system
+  jpa:
+    open-in-view: false

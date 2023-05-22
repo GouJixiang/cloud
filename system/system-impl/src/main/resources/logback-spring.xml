@@ -1,0 +1,82 @@
+<configuration debug="true">
+
+    <springProperty scope="context" name="logName" source="spring.application.name" defaultValue="cloud"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{reqId} [%thread] %-5level %logger{50}.%M [%line] - %msg%n"/>
+    <appender name="info_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${logName}_info.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <FileNamePattern>logs/backup/${logName}_info-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- each file should be at most 100MB, keep 30 days worth of history, but at most 10GB -->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+    <appender name="error_file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${logName}_error.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <FileNamePattern>logs/backup/${logName}_error-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- each file should be at most 100MB, keep 30 days worth of history, but at most 10GB -->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+    </appender>
+
+    <logger name="org.hibernate.SQL" level="debug" additivity="true"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="true"/>
+    <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager" level="debug" additivity="true"/>
+    <!-- 开发环境下的日志配置 -->
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+            <appender-ref ref="console"/>
+        </root>
+    </springProfile>
+
+    <!-- 测试环境下的日志配置 -->
+    <springProfile name="test">
+        <root level="INFO">
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+            <appender-ref ref="console"/>
+        </root>
+    </springProfile>
+
+    <!-- 生产环境下的日志配置 -->
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="info_file"/>
+            <appender-ref ref="error_file"/>
+        </root>
+    </springProfile>
+
+</configuration>

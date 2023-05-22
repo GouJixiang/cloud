@@ -1,11 +1,11 @@
 spring:
+  profiles:
+    active: dev
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
-      username: nacos
-      password: nacos
       discovery:
-        namespace: yangxy
+        namespace: cloud
       config:
-        file-extension: yaml
-        namespace: yangxy
+        file-extension: yml
+        namespace: cloud
