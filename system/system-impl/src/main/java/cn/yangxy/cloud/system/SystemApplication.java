@@ -1,17 +1,27 @@
 package cn.yangxy.cloud.system;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients(basePackages = "cn.yangxy.cloud.system.user")
+import javax.tools.ToolProvider;
+
+@EnableFeignClients(basePackages = "cn.yangxy.cloud")
 @EnableDiscoveryClient
 @SpringBootApplication
 public class SystemApplication {
 
+    private static final Logger log = LoggerFactory.getLogger(SystemApplication.class);
+
     public static void main(String[] args) {
-        SpringApplication.run(SystemApplication.class);
+        if (ToolProvider.getSystemJavaCompiler() == null) {
+            log.error("JDK Java compiler not available! ");
+            System.exit(1);
+        }
+        SpringApplication.run(SystemApplication.class, args);
     }
 
 }

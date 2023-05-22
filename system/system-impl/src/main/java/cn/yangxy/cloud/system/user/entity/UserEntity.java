@@ -1,16 +1,14 @@
 package cn.yangxy.cloud.system.user.entity;
 
-import cn.yangxy.cloud.system.common.object.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serial;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "USER")
-public class UserEntity extends BaseEntity implements Serializable {
+@Table(name = "SYS_USER")
+public class UserEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1253969073953260020L;
@@ -20,6 +18,9 @@ public class UserEntity extends BaseEntity implements Serializable {
     private String fullName;
 
     @Id
+    @GeneratedValue(generator = "UserIdGenerator")
+    @GenericGenerator(name = "UserIdGenerator", strategy = "uuid2")
+    @Column(name = "ID")
     public String getId() {
         return id;
     }
@@ -28,6 +29,7 @@ public class UserEntity extends BaseEntity implements Serializable {
         this.id = id;
     }
 
+    @Column(name = "LOGIN_NAME")
     public String getLoginName() {
         return loginName;
     }
@@ -36,6 +38,7 @@ public class UserEntity extends BaseEntity implements Serializable {
         this.loginName = loginName;
     }
 
+    @Column(name = "FULL_NAME")
     public String getFullName() {
         return fullName;
     }
