@@ -10,15 +10,8 @@
     </parent>
 
     <groupId>cn.yangxy.cloud</groupId>
-    <artifactId>system</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>system-api</module>
-        <module>system-client-api</module>
-        <module>system-impl</module>
-    </modules>
+    <artifactId>commons</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -27,10 +20,14 @@
     </properties>
 
     <dependencies>
-        <!-- Swagger 3.0 -->
         <dependency>
-            <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
     </dependencies>
 

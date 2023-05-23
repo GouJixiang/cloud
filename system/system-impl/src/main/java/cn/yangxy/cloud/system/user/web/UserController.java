@@ -1,10 +1,9 @@
 package cn.yangxy.cloud.system.user.web;
 
 import cn.yangxy.cloud.system.user.UserApi;
-import cn.yangxy.cloud.system.user.entity.UserEntity;
+import cn.yangxy.cloud.system.user.domain.UserEntity;
 import cn.yangxy.cloud.system.user.repository.UserRepository;
 import jakarta.annotation.Resource;
-import jakarta.websocket.server.PathParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;

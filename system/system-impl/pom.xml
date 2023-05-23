@@ -19,9 +19,15 @@
 
     <dependencies>
 
+        <!-- 内部依赖 -->
         <dependency>
             <groupId>cn.yangxy.cloud</groupId>
             <artifactId>system-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.yangxy.cloud</groupId>
+            <artifactId>commons</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
 
@@ -52,6 +58,12 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!-- 数据校验 -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
     </dependencies>
 

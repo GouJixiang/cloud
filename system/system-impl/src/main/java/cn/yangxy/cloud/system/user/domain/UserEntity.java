@@ -1,4 +1,4 @@
-package cn.yangxy.cloud.system.user.entity;
+package cn.yangxy.cloud.system.user.domain;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;

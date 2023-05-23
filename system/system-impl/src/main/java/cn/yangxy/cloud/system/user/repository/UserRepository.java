@@ -1,6 +1,6 @@
 package cn.yangxy.cloud.system.user.repository;
 
-import cn.yangxy.cloud.system.user.entity.UserEntity;
+import cn.yangxy.cloud.system.user.domain.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
