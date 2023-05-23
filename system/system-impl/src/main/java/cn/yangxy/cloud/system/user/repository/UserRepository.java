@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * <p>
  *
- * @author <a href="mailto:yangxianyin@mail.taiji.com.cn">yangxy</a>
+ * @author <a href="mailto:tiamoer@outlook.com">yangxy</a>
  * @version 1.0, 2023/5/22
  */
 

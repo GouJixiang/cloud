@@ -5,7 +5,7 @@ import org.springframework.context.MessageSource;
 /**
  * <p>
  * 接口状态枚举
- * @author <a href="mailto:yangxianyin@mail.taiji.com.cn">yangxy</a>
+ * @author <a href="mailto:tiamoer@outlook.com">yangxy</a>
  * @version 1.0, 2023/5/23
  */
 

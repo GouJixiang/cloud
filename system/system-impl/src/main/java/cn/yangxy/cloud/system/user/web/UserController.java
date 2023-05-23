@@ -7,6 +7,7 @@ import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+import org.yangxy.commons.vo.RestResult;
 
 import java.util.List;
 
@@ -21,20 +22,20 @@ public class UserController implements UserApi {
 
     @Override
     @RequestMapping("/printf")
-    public String printf() {
+    public RestResult<String> printf() {
         List<UserEntity> userList = userRepository.findAll();
         if (userList.isEmpty())
-            return "数据库无数据";
-        return userList.get(0).getFullName();
+            return RestResult.err("没有找到用户数据");
+        return RestResult.ok(userList.get(0).getFullName());
     }
 
     @ResponseBody
     @GetMapping("/save/{userName}/{loginName}")
-    public UserEntity saveUser(@PathVariable String userName, @PathVariable String loginName) {
+    public RestResult<UserEntity> saveUser(@PathVariable String userName, @PathVariable String loginName) {
         log.info("前端传递参数为：" + userName);
         UserEntity user = new UserEntity();
         user.setLoginName(loginName);
         user.setFullName(userName);
-        return userRepository.saveAndFlush(user);
+        return RestResult.ok(userRepository.saveAndFlush(user));
     }
 }
